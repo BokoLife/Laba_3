@@ -3,13 +3,13 @@ import Persons.*;
 
 public class Laba {
     public static void main(String[] args){
-        Patient sineglazka = new Patient("Синеглазка",5);  //  дни 10
-        Doctor medunica = new Doctor("Медуница", 155, 61, 2);              // рост 10 возраст 60
+        Patient sineglazka = new Patient("Синеглазка",5);  // days > 10
+        Doctor medunica = new Doctor("Медуница", 155, 61, 2); //height => 10; age < 60; -2 < vision < 3
 
-        Visitor neznaika = new Visitor("Незнайка", 160, 10);    // hOS > 8
+        Visitor neznaika = new Visitor("Ненайка", 160, 10); // 12 <= hOS => 8
         Visitor snezhinka = new Visitor("Снежинка");
 
-        System.out.println("Цель Незнайки: пробраться в палату к малышу, минуя доктора");
+        System.out.println(neznaika.getName() + " хочет пробраться в палату к малышу, минуя доктора");
 
         medunica.watchSore(sineglazka);
         medunica.removePatch();
@@ -74,6 +74,7 @@ public class Laba {
 
         if (checker){
             neznaika.goAwayFromRoom();
+            System.out.println(snezhinka.getName() + " удивилась его находчивости и смелости");
         }
     }
 }
