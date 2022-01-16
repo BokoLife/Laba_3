@@ -3,8 +3,8 @@ import Persons.*;
 
 public class Laba {
     public static void main(String[] args){
-        Patient sineglazka = new Patient("Синеглазка",15);  //  дни 10
-        Doctor medunica = new Doctor("Медуница", 155, 6, 2);              // рост 10 возраст 60
+        Patient sineglazka = new Patient("Синеглазка",5);  //  дни 10
+        Doctor medunica = new Doctor("Медуница", 155, 61, 2);              // рост 10 возраст 60
 
         Visitor neznaika = new Visitor("Незнайка", 160, 10);    // hOS > 8
         Visitor snezhinka = new Visitor("Снежинка");
