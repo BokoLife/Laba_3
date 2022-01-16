@@ -18,16 +18,15 @@ public abstract class Person implements Walkable{
         return height;
     }
 
+
     @Override
     public abstract void goAwayFromRoom();
-
     //@Override
     public void showInfo(){
         System.out.println("Имя: " + this.name);
     }
     //@Override
     public abstract void speak();
-
     @Override
     public String toString(){
         return "Имя: " + this.getName();

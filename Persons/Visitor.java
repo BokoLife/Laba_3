@@ -1,41 +1,18 @@
 package Persons;
 
-import Objects.*;
 import Objects.Clothes.*;
 
 public class Visitor extends Person{
     private int hoursOfSleep;
     private int height;
-    private boolean eatOatmeal;
-    private boolean bathrobeSizeCheck;
-    private boolean stayGlasses;
-    private Sleep sleep;
-    private OatMeal oatMeal;
-    private Bathrobe bathrobe;
-    private Cap cap;
-    private Glasses glasses;
-    private ClothesType clothesType;
 
-    public Visitor(String name, int height, int hoursOfSleep, Bathrobe bathrobe){
+    public Visitor(String name, int height, int hoursOfSleep){
         this.setName(name);
         this.setHoursOfSleep(hoursOfSleep);
         this.setHeight(height);
-        this.sleep = new Sleep(hoursOfSleep);
-        this.oatMeal = new OatMeal();
-        this.bathrobe = bathrobe;
-        this.cap = new Cap();
-        this.glasses = new Glasses();
     }
-
     public Visitor(String name) {
         this.setName(name);
-    }
-
-    public void setHoursOfSleep(int hoursOfSleep) {
-        this.hoursOfSleep = hoursOfSleep;
-    }
-    public int getHoursOfSleep() {
-        return hoursOfSleep;
     }
 
     public void setHeight(int height) {
@@ -45,63 +22,36 @@ public class Visitor extends Person{
         return height;
     }
 
-
-    public void sleepCheck(){
-        sleep.sleepCheck(this);
-        if (sleep.isSleepCheck()) {
-            bathrobe.see(this);
-        }
+    public boolean sleepCheck(){
+        return getHoursOfSleep() >= 8;
+    }
+    public void setHoursOfSleep(int hoursOfSleep) {
+        this.hoursOfSleep = hoursOfSleep;
+    }
+    public int getHoursOfSleep() {
+        return hoursOfSleep;
     }
 
-
-    public void oatmealCheck(){
-        if (sleep.isSleepCheck()) oatMeal.oatmealCheck(this);
-        if (oatMeal.isEatOatmeal()) {
-            bathrobe.take(this);
-            this.setEatOatmeal(true);
-        }
-    }
-    public void setEatOatmeal(boolean eatOatmeal) {
-        this.eatOatmeal = eatOatmeal;
-    }
-    public boolean isEatOatmeal() {
-        return eatOatmeal;
+    public boolean oatmealCheck() {
+        return getHoursOfSleep() <= 10;
     }
 
-
-    public void bathrobeSizeCheck(){
-         if (sleep.isSleepCheck() && oatMeal.isEatOatmeal()) {
-             bathrobe.sizeCheck(this);
-             bathrobeSizeCheck = bathrobe.isSizeCheck();
-         }
-    }
-    public boolean isBathrobeSizeCheck() {
-        return bathrobeSizeCheck;
-    }
-    public void setBathrobeSizeCheck(boolean bathrobeSizeCheck) {
-        this.bathrobeSizeCheck = bathrobeSizeCheck;
+    public boolean clothesSizeCheck(Doctor doc){
+        return getHeight() - doc.getHeight() <= 10;
     }
 
-
-    public void wearCap(){
-        this.cap.wear(this);
+    public void missionFailed(){
+        System.out.println("Миссия провалена...");
     }
 
-    public void stayGlassesCheck(Doctor doctor){
-        this.setStayGlasses(true);
-        this.glasses.stayGlassesCheck(this, doctor);
+    public void see(ClothesType clothes){
+        System.out.println(this.getName() + " " + clothes.see());
     }
-    public boolean isStayGlasses() {
-        return stayGlasses;
+    public void take(ClothesType clothes){
+        System.out.println(this.getName() + " " + clothes.take());
     }
-    public void setStayGlasses(boolean stayGlasses) {
-        this.stayGlasses = stayGlasses;
-    }
-
-
-    public void wear(ClothesType clothesType){
-        this.clothesType = clothesType;
-        System.out.println(this.getName() + " " + clothesType.wear());
+    public void wear(ClothesType clothes){
+        System.out.println(this.getName() + " " + clothes.wear());
     }
 
     @Override
@@ -115,7 +65,6 @@ public class Visitor extends Person{
     public void goAwayFromRoom(){
         System.out.println(this.getName() + " вышел из комнаты");
     }
-
     @Override
     public int hashCode() {
         int result = 1;
@@ -124,7 +73,6 @@ public class Visitor extends Person{
         result = 31 * result + ((this.getName() == null) ? 0 : this.getName().hashCode());
         return result;
     }
-
     @Override
     public boolean equals(Object obj){
         if (this == obj) return true;

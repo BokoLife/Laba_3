@@ -1,13 +1,12 @@
 package Objects.Clothes;
-import Objects.Things;
-import Persons.*;
 
-public abstract class Clothes extends Things implements Wearable {
+public class Clothes implements Wearable {
     private int size;
+    private boolean sizeCheck;
 
-    public abstract void see(Person person);
-    public abstract void take(Person person);
-    public abstract void wear(Person person);
+//    public void see(Person person);
+//    public void take(Person person);
+//    public void wear(Person person);
 
     public void setSize(int size) {
         this.size = size;

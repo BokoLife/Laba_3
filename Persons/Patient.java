@@ -27,7 +27,6 @@ public class Patient extends Person{
     public void goAwayFromRoom(){
         System.out.println(this.getName() + " вышла из комнаты");
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

@@ -2,13 +2,15 @@ package Persons;
 
 public class Doctor extends Person{
     private int age;
+    private double vision;
     private boolean stayGlasses;
-    private boolean checkRecovery;
+    private boolean isCheckRecovery;
 
-    public Doctor(String name, int height, int age){
+    public Doctor(String name, int height, int age, double vision){
         this.setName(name);
         this.setHeight(height);
         this.setAge(age);
+        this.setVision(vision);
     }
 
     public void watchSore(Patient patient){
@@ -17,35 +19,19 @@ public class Doctor extends Person{
     public void removePatch(){
         System.out.println(this.getName() + " сорвала пластырь ");
     }
-    public void checkRecovery(Patient patient){
-        if (patient.getDaysFromCrash() < 10){
-            System.out.println("Рана ещё не зажила, пойдёмте со мной, мы погреем ваш лоб синим светом, чтобы не было синяка");
-            checkRecovery = true;
-            this.goAwayFromRoom();
-            patient.goAwayFromRoom();
-        }
-        else{
-            System.out.println("Рана зажила, пластырь можно больше не носить");
-            System.out.println("Миссия провалена...");
-            checkRecovery = false;
-        }
-    }
 
-    public boolean isCheckRecovery() {
-        return checkRecovery;
+    public boolean checkRecovery(Patient patient){
+        return patient.getDaysFromCrash() < 10;
     }
-    public void setCheckRecovery(boolean checkRecovery) {
-        this.checkRecovery = checkRecovery;
+    public boolean isCheckRecovery() {
+        return isCheckRecovery;
+    }
+    public void setIsCheckRecovery(boolean checkRecovery) {
+        this.isCheckRecovery = checkRecovery;
     }
 
     public boolean stayGlassesCheck(){
-        if (this.getAge() > 60){
-            this.setStayGlasses(true);
-            return true;
-        }
-        else return false;
-    }
-    public void stayGlasses(){
+        return this.getAge() > 60;
     }
     public void setStayGlasses(boolean stayGlasses) {
         this.stayGlasses = stayGlasses;
@@ -54,11 +40,22 @@ public class Doctor extends Person{
         return stayGlasses;
     }
 
+    public boolean checkVision(){
+        return this.getVision() > -2 && this.getVision() < 3;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
     public int getAge() {
         return age;
+    }
+
+    public void setVision(double vision) {
+        this.vision = vision;
+    }
+    public double getVision() {
+        return vision;
     }
 
     @Override
